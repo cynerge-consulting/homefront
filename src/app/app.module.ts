@@ -4,13 +4,30 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
+//pages
+import { HomeComponent } from './pages/home/home.component';
+import { ServicesComponent } from './pages/services/services.component';
+import { HowWeWorkComponent } from './pages/how-we-work/how-we-work.component';
+import { TeamComponent } from './pages/team/team.component';
+import { ContactComponent } from './pages/contact/contact.component';
+import { TechDetailsComponent } from './pages/tech-details/tech-details.component';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    ServicesComponent,
+    HowWeWorkComponent,
+    TeamComponent,
+    ContactComponent,
+    TechDetailsComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
