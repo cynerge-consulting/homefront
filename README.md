@@ -20,7 +20,11 @@ Many of the scripts we'll be running are in nested directories.  Here's how to r
   - `npm run web:lint`
   - `npm run web:e2e`
 + ./api (backend application)
-  - tbd
+  - `npm run api:install`
+  - `npm run api:test`
+  - `npm run api:build`
+  - `npm run api:start`
+  - `npm run api:pretty`
 
 ## Configuration Setup
 + `config/default.json`
