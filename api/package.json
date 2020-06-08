@@ -9,7 +9,7 @@
   "scripts": {
     "test": "mocha test/mocha.js",
     "build": "gulp",
-    "startDev": "node src/app.js",
+    "startDev": "nodemon src/app.js",
     "startProd": "node publish/main-min.js",
     "pretty": "prettier --write --tab-width 2 \"src/**/*.js\""
   },
