@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "install": "npm-run-all *:install",
-    "start": "npm-run-all *:start",
+    "start": "npm-run-all -pl *:start",
     "build": "npm-run-all *:build",
     "test": "npm-run-all *:test",
     "lint": "npm-run-all *:lint",
