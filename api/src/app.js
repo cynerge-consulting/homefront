@@ -1,10 +1,12 @@
+process.env.NODE_CONFIG_DIR = "../config";
+var config = require('config');
 var helmet = require('helmet');
 var compression = require('compression');
 var express = require('express');
 var path = require('path');
 var pino = require('express-pino-logger')();
 
-var port = 3000;
+var port = config.get("api.url.port");
 var app = new express();
 
 //app.use(compression()); // compressed responses for faster responses from the endpoints.
