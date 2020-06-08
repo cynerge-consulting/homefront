@@ -8,6 +8,7 @@
   },
   "scripts": {
     "test": "mocha test/mocha.js",
+    "test:watch": "mocha -w test/mocha.js",
     "build": "gulp",
     "startDev": "nodemon src/app.js",
     "startProd": "node publish/main-min.js",

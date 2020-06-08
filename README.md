@@ -8,6 +8,7 @@ Many of the scripts we'll be running are in nested directories.  Here's how to r
   - `npm install`
   - `npm start`
   - `npm test`
+  - `npm run test:watch`
   - `npm run lint`
   - `npm run e2e`
   - `npm run build`
@@ -17,6 +18,7 @@ Many of the scripts we'll be running are in nested directories.  Here's how to r
   - `npm run web:start`
   - `npm run web:build`
   - `npm run web:test`
+  - `npm run web:test:watch`
   - `npm run web:lint`
   - `npm run web:e2e`
 + ./api (backend application)
