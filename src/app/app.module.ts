@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
-// pages
+//pages
 import { HomeComponent } from './pages/home/home.component';
 import { ServicesComponent } from './pages/services/services.component';
 import { HowWeWorkComponent } from './pages/how-we-work/how-we-work.component';

@@ -1,27 +1,5 @@
 # ProjectHomefront
 
-## Running NPM Scripts
-
-Many of the scripts we'll be running are in nested directories.  Here's how to run them:
-
-+ Group scripts - _(Runs all of the similar scripts in the nested directories)_
-  - `npm install`
-  - `npm start`
-  - `npm test`
-  - `npm run lint`
-  - `npm run e2e`
-  - `npm run build`
-+ ./webapp (angular application) - _(runs the scripts of the same name in the ./webapp/ directory)_
-  - `npm run web:install`
-  - `npm run web:ng`
-  - `npm run web:start`
-  - `npm run web:build`
-  - `npm run web:test`
-  - `npm run web:lint`
-  - `npm run web:e2e`
-+ ./api (backend application)
-  - tbd
-
 ## Configuration Setup
 + `config/default.json`
   - stored in repository
@@ -42,3 +20,26 @@ Many of the scripts we'll be running are in nested directories.  Here's how to r
   - primarily used to switch between named configurations.
 
 Tools like Jenkins or AutoDeploy should write to the files `config/local.json` and `.env` with the secrets and deployment variables.  `config/default.json` should contain default information for local developer deployments.
+
+---
+
+## Angular Tools
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.3.
+
++ Development server
+  - Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
++ Code scaffolding
+  - Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+
++ Build
+  - Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+
++ Running unit tests
+  - Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
++ Running end-to-end tests
+  - Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+
++ Further help
+  - To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
