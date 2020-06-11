@@ -28,7 +28,7 @@ jobs:
                 name: Unit Test
                 command: |
                   ls -la
-                  npm test
+                  npm run test
   linting-js:
     docker:
       - image: circleci/node:12-browsers-legacy
