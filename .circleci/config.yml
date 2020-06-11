@@ -7,7 +7,7 @@ references:
     run:
       name: Set Environment Variables
       command: |
-        echo 'export ES_LINT_SOURCE=../webapp/src/**/**/**/**.ts' >> ${BASH_ENV}
+        echo 'export ES_LINT_SOURCE=./webapp/src/**/**/**/**.ts' >> ${BASH_ENV}
 jobs:
   install-deps:
     executor:
@@ -24,7 +24,11 @@ jobs:
       - checkout
       - node/with-cache:
           steps:
-            - run: npm test
+            - run:
+                name: Unit Test
+                command: |
+                  ls -la
+                  npm test
   linting-js:
     docker:
       - image: circleci/node:12-browsers-legacy
@@ -36,6 +40,8 @@ jobs:
             - run:
                 name: "Lint Test"
                 command: |
+                  ls
+                  pwd
                   mkdir -p test-results/es_lint
                   ./node_modules/.bin/eslint $ES_LINT_SOURCE > test-results/es_lint/eslint-results.json
       - store_artifacts:
@@ -46,9 +52,9 @@ workflows:
     project-homefront:
       jobs:
         - install-deps
-        - unit-test:
+        - linting-js:
             requires:
               - install-deps
-        - linting-js:
+        - unit-test:
             requires:
               - install-deps
