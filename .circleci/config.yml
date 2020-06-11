@@ -12,21 +12,22 @@ references:
   restore_deps: &restore_deps
     restore_cache:
       keys:
-        - v3-dependencies-{{ checksum "webapp/package.json" }}
+        - v4-dependencies-{{ checksum "webapp/package.json" }}
 jobs:
   install-deps:
-    executor:
-      name: node/default
+    docker:
+      - image: circleci/node:13-browsers-legacy
     steps:
       - checkout
-      - node/with-cache:
-          steps:
-            - run: npm install
+      - <<: *restore_deps
+      - run: |
+          npm -v
+          npm install --no-audit
       - save_cache:
           paths:
             - node_modules
             - webapp/node_modules
-          key: v3-dependencies-{{ checksum "webapp/package.json" }}
+          key: v4-dependencies-{{ checksum "webapp/package.json" }}
   unit-test:
     docker:
       - image: circleci/node:13-browsers-legacy
