@@ -43,7 +43,7 @@ jobs:
 
 
 workflows:
-    cynerge-internal:
+    project-homefront:
       jobs:
         - install-deps
         - unit-test:
