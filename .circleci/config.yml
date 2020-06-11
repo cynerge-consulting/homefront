@@ -8,6 +8,11 @@ references:
       name: Set Environment Variables
       command: |
         echo 'export ES_LINT_SOURCE=./webapp/src/**/**/**/**.ts' >> ${BASH_ENV}
+  
+  restore_deps: &restore_deps
+    restore_cache:
+      keys:
+        - v2-dependencies-{{ checksum "webapp/package.json" }}
 jobs:
   install-deps:
     executor:
@@ -17,33 +22,39 @@ jobs:
       - node/with-cache:
           steps:
             - run: npm install
+      - save_cache:
+          paths:
+            - node_modules
+            - webapp/node_modules
+          key: v2-dependencies-{{ checksum "webapp/package.json" }}
   unit-test:
     docker:
       - image: circleci/node:12-browsers-legacy
     steps:
       - checkout
-      - node/with-cache:
-          steps:
-            - run:
-                name: Unit Test
-                command: |
-                  ls -la
-                  npm run test
+      - checkout
+      - <<: *restore_deps
+      - <<: *set_environment_variables
+      - run:
+          name: Unit Test
+          command: |
+            ls -la
+            ls -la webapp/
+            npm run test
   linting-js:
     docker:
       - image: circleci/node:12-browsers-legacy
     steps:
       - checkout
-      - *set_environment_variables
-      - node/with-cache:
-          steps:
-            - run:
-                name: "Lint Test"
-                command: |
-                  ls
-                  pwd
-                  mkdir -p test-results/es_lint
-                  ./node_modules/.bin/eslint $ES_LINT_SOURCE > test-results/es_lint/eslint-results.json
+      - <<: *restore_deps
+      - <<: *set_environment_variables
+      - run:
+          name: "Lint Test"
+          command: |
+            ls
+            pwd
+            mkdir -p test-results/es_lint
+            ./node_modules/.bin/eslint $ES_LINT_SOURCE > test-results/es_lint/eslint-results.json
       - store_artifacts:
           path: test-results/es_lint
 
