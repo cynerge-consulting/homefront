@@ -1,0 +1,89 @@
+version: 2.1
+orbs:
+  node: circleci/node@1.1.6
+
+references:
+  set_environment_variables: &set_environment_variables
+    run:
+      name: Set Environment Variables
+      command: |
+        echo 'export ES_LINT_SOURCE=./src/**/**/**/**.ts' >> ${BASH_ENV}
+        echo 'export SONAR_HOST=${SONAR_HOST}' >> ${BASH_ENV}
+        echo 'export SONAR_LOGIN=${SONAR_LOGIN}' >> ${BASH_ENV}
+        echo 'export SONAR_PROJECT=shipyard-frontend' >> ${BASH_ENV}
+        echo 'export SONAR_SOURCE=src' >> ${BASH_ENV}
+
+  restore_deps: &restore_deps
+    restore_cache:
+      keys:
+        - v4-dependencies-{{ checksum "webapp/package.json" }}
+jobs:
+  install-deps:
+    docker:
+      - image: circleci/node:13-browsers-legacy
+    steps:
+      - checkout
+      - <<: *restore_deps
+      - run: |
+          npm -v
+          npm install --no-audit
+      - save_cache:
+          paths:
+            - node_modules
+            - webapp/node_modules
+          key: v4-dependencies-{{ checksum "webapp/package.json" }}
+  unit-test:
+    docker:
+      - image: circleci/node:13-browsers-legacy
+    steps:
+      - checkout
+      - checkout
+      - <<: *restore_deps
+      - <<: *set_environment_variables
+      - run:
+          name: Unit Test
+          command: |
+            ls -la
+            ls -la webapp/
+            npm run test
+  linting-js:
+    docker:
+      - image: circleci/node:13
+    steps:
+      - checkout
+      - <<: *restore_deps
+      - <<: *set_environment_variables
+      - run:
+          name: "Lint Test"
+          command: |
+            ls
+            pwd
+            mkdir -p test-results/es_lint
+            ./node_modules/.bin/eslint $ES_LINT_SOURCE > test-results/es_lint/eslint-results.json
+      - store_artifacts:
+          path: test-results/es_lint
+
+  sonar-test:
+    docker:
+      - image: cynergeconsulting/sonarqube-scan:latest
+    steps:
+      - checkout
+      - <<: *set_environment_variables
+      - run: |
+          printenv
+          sonar-scanner -Dsonar.host.url=$SONAR_HOST -Dsonar.login=$SONAR_LOGIN -Dsonar.projectKey=$SONAR_PROJECT -Dsonar.sources=$SONAR_SOURCE
+
+workflows:
+    project-homefront:
+      jobs:
+        - install-deps
+        - linting-js:
+            requires:
+              - install-deps
+        - unit-test:
+            requires:
+              - install-deps
+        - sonar-test:
+            context: Cynerge
+            requires:
+              - install-deps
