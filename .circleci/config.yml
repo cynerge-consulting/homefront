@@ -44,7 +44,6 @@ jobs:
           name: Unit Test
           command: |
             ls -la
-            ls -la webapp/
             npm run test
   linting-js:
     docker:
