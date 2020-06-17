@@ -69,7 +69,10 @@ jobs:
     steps:
       - checkout
       - <<: *set_environment_variables
-      - run: sonar-scanner -Dsonar.host.url=$SONAR_HOST -Dsonar.login=$SONAR_LOGIN -Dsonar.projectKey=$SONAR_PROJECT -Dsonar.sources=$SONAR_SOURCE
+      - run: |
+          printenv
+          echo $SONAR_HOST
+          sonar-scanner -Dsonar.host.url=$SONAR_HOST -Dsonar.login=$SONAR_LOGIN -Dsonar.projectKey=$SONAR_PROJECT -Dsonar.sources=$SONAR_SOURCE
 
 workflows:
     project-homefront:
@@ -84,3 +87,4 @@ workflows:
         - sonar-test:
             requires:
               - install-deps
+              http://3.221.118.166.com
