@@ -87,4 +87,3 @@ workflows:
         - sonar-test:
             requires:
               - install-deps
-              http://3.221.118.166.com
