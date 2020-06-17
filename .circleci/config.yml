@@ -65,7 +65,7 @@ jobs:
 
   sonar-test:
     docker:
-      - image: cynergeconsulting/sonarqube-scan:1.0.0
+      - image: cynergeconsulting/sonarqube-scan:latest
     steps:
       - checkout
       - <<: *set_environment_variables
