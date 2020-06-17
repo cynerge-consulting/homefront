@@ -71,7 +71,6 @@ jobs:
       - <<: *set_environment_variables
       - run: |
           printenv
-          echo $SONAR_HOST
           sonar-scanner -Dsonar.host.url=$SONAR_HOST -Dsonar.login=$SONAR_LOGIN -Dsonar.projectKey=$SONAR_PROJECT -Dsonar.sources=$SONAR_SOURCE
 
 workflows:
@@ -85,5 +84,6 @@ workflows:
             requires:
               - install-deps
         - sonar-test:
+            context: Cynerge
             requires:
               - install-deps
