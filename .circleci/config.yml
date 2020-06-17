@@ -8,8 +8,8 @@ references:
       name: Set Environment Variables
       command: |
         echo 'export ES_LINT_SOURCE=./webapp/src/**/**/**/**.ts' >> ${BASH_ENV}
-        echo 'export SONAR_HOST=$SONAR_HOST' >> ${BASH_ENV}
-        echo 'export SONAR_LOGIN=$SONAR_LOGIN' >> ${BASH_ENV}
+        echo 'export SONAR_HOST=${SONAR_HOST}' >> ${BASH_ENV}
+        echo 'export SONAR_LOGIN=${SONAR_LOGIN}' >> ${BASH_ENV}
         echo 'export SONAR_PROJECT=shipyard-frontend' >> ${BASH_ENV}
         echo 'export SONAR_SOURCE=webapp/src' >> ${BASH_ENV}
 
