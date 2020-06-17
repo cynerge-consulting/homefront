@@ -8,7 +8,11 @@ references:
       name: Set Environment Variables
       command: |
         echo 'export ES_LINT_SOURCE=./webapp/src/**/**/**/**.ts' >> ${BASH_ENV}
-  
+        echo 'export SONAR_HOST=$SONAR_HOST' >> ${BASH_ENV}
+        echo 'export SONAR_LOGIN=$SONAR_LOGIN' >> ${BASH_ENV}
+        echo 'export SONAR_PROJECT=shipyard-frontend' >> ${BASH_ENV}
+        echo 'export SONAR_SOURCE=webapp/src' >> ${BASH_ENV}
+
   restore_deps: &restore_deps
     restore_cache:
       keys:
@@ -44,7 +48,7 @@ jobs:
             npm run test
   linting-js:
     docker:
-      - image: circleci/node:13-browsers-legacy
+      - image: circleci/node:13
     steps:
       - checkout
       - <<: *restore_deps
@@ -59,6 +63,13 @@ jobs:
       - store_artifacts:
           path: test-results/es_lint
 
+  sonar-test:
+    docker:
+      - image: cynergeconsulting/sonarqube-scan:1.0.0
+    steps:
+      - checkout
+      - <<: *set_environment_variables
+      - run: sonar-scanner -Dsonar.host.url=$SONAR_HOST -Dsonar.login=$SONAR_LOGIN -Dsonar.projectKey=$SONAR_PROJECT -Dsonar.sources=$SONAR_SOURCE
 
 workflows:
     project-homefront:
@@ -68,5 +79,8 @@ workflows:
             requires:
               - install-deps
         - unit-test:
+            requires:
+              - install-deps
+        - sonar-test:
             requires:
               - install-deps
