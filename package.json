@@ -25,9 +25,10 @@
     "core-js": "^2.5.4",
     "dotenv": "^8.2.0",
     "jquery": "^3.5.1",
+    "phaser": "^3.23.0",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
-    "typescript": "^3.9.5",
+    "typescript": "3.2.x",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
@@ -51,6 +52,7 @@
     "karma-coverage-istanbul-reporter": "~2.0.1",
     "karma-jasmine": "~1.1.2",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "ng-mocks": "^10.0.0",
     "prettier": "^2.0.5",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
