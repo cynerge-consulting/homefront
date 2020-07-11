@@ -25,9 +25,10 @@
     "core-js": "^2.5.4",
     "dotenv": "^8.2.0",
     "jquery": "^3.5.1",
+    "phaser": "^3.23.0",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
-    "typescript": "^3.9.5",
+    "typescript": "3.2.x",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
