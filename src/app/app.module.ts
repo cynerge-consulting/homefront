@@ -14,6 +14,7 @@ import { TeamComponent } from './pages/team/team.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { TechDetailsComponent } from './pages/tech-details/tech-details.component';
 import { GameComponent } from './game/game.component';
+import { TeamCarouselComponent } from './components/team-carousel/team-carousel.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { GameComponent } from './game/game.component';
     TeamComponent,
     ContactComponent,
     TechDetailsComponent,
-    GameComponent
+    GameComponent,
+    TeamCarouselComponent
   ],
   imports: [
     BrowserModule,
