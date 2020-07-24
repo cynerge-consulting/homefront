@@ -1,46 +1,28 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" routerLink="/home">Cynerge</a>
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarNavAltMarkup"
-    aria-controls="navbarNavAltMarkup"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link active" routerLink="/services"
-        >Our Services <span class="sr-only">(current)</span></a
-      >
-      <a class="nav-item nav-link active" routerLink="/work"
-        >How We Work <span class="sr-only">(current)</span></a
-      >
-      <a class="nav-item nav-link active" routerLink="/team"
-        >Our Team <span class="sr-only">(current)</span></a
-      >
-      <a class="nav-item nav-link active" routerLink="/contact"
-        >Get in Touch <span class="sr-only">(current)</span></a
-      >
-      <a class="nav-item nav-link active" routerLink="/tech_details"
-        >The Nitty Gritty <span class="sr-only">(current)</span></a
-      >
+      <a class="nav-item nav-link active" routerLink="/services">Our Services <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link active" routerLink="/work">How We Work <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link active" routerLink="/team">Our Team <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link active" routerLink="/contact">Get in Touch <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link active" routerLink="/tech_details">The Nitty Gritty <span class="sr-only">(current)</span></a>
     </div>
   </div>
 </nav>
 
-<div style="text-align: center;">
-  <h1>Welcome to {{ title }}!</h1>
+
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
 </div>
 <h2>Future Greatness Lives Here</h2>
 
 <router-outlet></router-outlet>
 
 <!-- placeholder for now -->
-<script
-  src="https://kit.fontawesome.com/7d86c84534.js"
-  crossorigin="anonymous"
-></script>
+<script src="https://kit.fontawesome.com/7d86c84534.js" crossorigin="anonymous"></script>
