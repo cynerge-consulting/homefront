@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { ngMocks, MockComponent } from "ng-mocks";
 
 import { TeamComponent } from "./team.component";
+import { GameComponent } from "src/app/game/game.component";
 
 describe("TeamComponent", () => {
   let component: TeamComponent;
@@ -8,7 +10,7 @@ describe("TeamComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TeamComponent],
+      declarations: [TeamComponent, MockComponent(GameComponent)],
     }).compileComponents();
   }));
 
