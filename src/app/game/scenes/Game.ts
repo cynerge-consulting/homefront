@@ -17,13 +17,31 @@ export default class Game extends Phaser.Scene {
 
   create() {
 
-    // background sprite
-    let bg = this.add.tileSprite(0, 0, window.innerWidth * 2, window.innerHeight * 2, 'bg');
+    // create map
+    var map = this.make.tilemap({
+      key: 'tunnel_1'
+    });
+    var tileset = map.addTilesetImage('dungeon', 'tiles', 16, 16)
+    var ground = map.createStaticLayer('ground', tileset)
+    var walls = map.createStaticLayer('walls', tileset)
+
+    this.physics.world.bounds.width = map.widthInPixels
+    this.physics.world.bounds.height = map.heightInPixels
+
+    // set walls to collide
+    walls.setCollisionByProperty({ collides: true })
 
     // player sprite
-    player = this.add.sprite(window.innerWidth / 2, window.innerHeight / 2, 'character');
+    player = this.add.sprite(map.widthInPixels / 2, map.heightInPixels / 2 + 100, 'character');
     this.physics.world.enable(player)
     this.physics.world.enableBody(player, Phaser.Physics.Arcade.DYNAMIC_BODY)
+    player.setScale(.75)
+
+    // collide player with walls
+    this.physics.add.collider(player, walls);
+
+    // have camera follow player
+    this.cameras.main.startFollow(player);
 
     // animations
     this.anims.create({
@@ -55,7 +73,7 @@ export default class Game extends Phaser.Scene {
       frames: this.anims.generateFrameNumbers('character', {
         frames: [2, 3]
       }),
-      frameRate: 10,
+      frameRate: 2,
       repeat: -1
     });
     player.play('down');

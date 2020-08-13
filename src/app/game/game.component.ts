@@ -18,9 +18,9 @@ export class GameComponent implements OnInit {
   constructor() {
     config = {
       type: Phaser.AUTO,
-      parent: 'content',
+      parent: 'game',
       width: window.innerWidth,
-      height: window.innerHeight,
+      height: window.innerHeight - 200,
       disableContextMenu: true,
       physics: {
         default: 'arcade',
@@ -33,7 +33,10 @@ export class GameComponent implements OnInit {
           debug: false // set to true to view zones
         }
       },
-      scene: [Preloader, Game]
+      scene: [Preloader, Game],
+      scale: {
+        zoom: 1
+      }
     };
 
     game = new Phaser.Game(config);
