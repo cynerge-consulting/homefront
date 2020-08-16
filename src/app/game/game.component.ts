@@ -20,8 +20,9 @@ export class GameComponent implements OnInit {
       preload: this.preload,
       create: this.create,
       update: this.update,
-      render: this.render
-    });
+        render: this.render,
+      }
+    );
     that = Object.create(this.constructor.prototype);
   }
 
